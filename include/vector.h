@@ -1,5 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+using namespace std;
 
 class Vector {
 public:
@@ -38,11 +39,13 @@ public:
   friend Vector operator/(const Vector &, double);
 
   friend double operator^(const Vector &, const Vector &);
+  
+  friend ostream &operator<<(ostream &, const Vector &);
 
   Vector operator-() const;
 
 private:
-  double coords_[n];
+  double vec[n];
 }; // class Vector
 
 bool operator!=(const Vector &, const Vector &);
