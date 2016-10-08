@@ -131,3 +131,7 @@ double operator^(const Vector& p1, const Vector& p2){
 bool operator!=(const Vector& p1, const Vector& p2){
     return !(p1 == p2);
 }
+
+Vector Vector::operator-()const{
+    return Vector(*this) *= -1;
+}    
