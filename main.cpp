@@ -158,6 +158,15 @@ void oper_not_equal(){
     cout<<"17_Passed"<<endl;
 }
 
+void oper_minus_unar(){
+    Vector buf{1};
+    Vector bbf = -buf;
+    for(unsigned int i = 0; i < 3; i++){
+            assert(bbf[i]==-1);
+    }
+    cout<<"18_Passed"<<endl;
+}
+
 
 int main()
 {
@@ -181,7 +190,8 @@ oper_mult_left();
 oper_div();
 oper_scalar();
 oper_not_equal();
-
+oper_minus_unar();
+    
 }
 
 catch(const char* op){
