@@ -1,6 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
-using namespace std;
+#include <ostream>
 
 class Vector {
 public:
@@ -40,7 +40,7 @@ public:
 
   friend double operator^(const Vector &, const Vector &);
   
-  friend ostream &operator<<(ostream &, const Vector &);
+  friend std::ostream &operator<<(std::ostream &, const Vector &);
 
   Vector operator-() const;
 
