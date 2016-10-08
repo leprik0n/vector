@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vector.h"
+#include <cmath>
 using namespace std;
 
 Vector::Vector()
@@ -36,7 +37,7 @@ Vector& Vector::operator=(const Vector& p)
 double Vector::operator[](unsigned long i) const
 {
      if(i > (n-1)){ 
-        throw out_of_range("out of range");
+        throw "out of range";
      }   
      return vec[i];
 }
@@ -44,7 +45,7 @@ double Vector::operator[](unsigned long i) const
 double& Vector::operator[](unsigned long i)
 {
      if(i > (n-1)){ 
-         throw out_of_range("out_of range");
+         throw "out_of range";
      }   
      return vec[i];
 }
@@ -82,18 +83,18 @@ Vector& Vector::operator/=(double k)
      }
      
      else{ 
-         throw exception("division by zero");
+         throw "division by zero";
      }   
     return *this;
 }
 
 bool operator==(const Vector& p1, const Vector& p2)
 {
-     for(unsigned int i=0;i<p1.n;i++)
-         if(p1.vec[i]!=p2.vec[i])
-       return false;
-  else
-      return true;
+     for(unsigned int i = 0; i < p1.n; i++){ 
+         if(abs(p1.vec[i]-p2.vec[i])>numeric_limits<double>::epsilon())
+            return false;
+     }        
+     return true;
 }
 
 ostream& operator<<(ostream& os,const Vector& p)
@@ -131,7 +132,7 @@ Vector operator/(const Vector &p, double k)
         return Vector(p)/=k;
      }
      else{
-        throw exception("division by zero");
+        throw "division by zero";
      }   
 }
 
