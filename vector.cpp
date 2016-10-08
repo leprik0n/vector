@@ -1,6 +1,7 @@
 #include <iostream>
 #include "vector.h"
 #include <cmath>
+#include <limits>
 using namespace std;
 
 Vector::Vector()
