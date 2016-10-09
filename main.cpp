@@ -162,7 +162,7 @@ void oper_minus_unar(){
     Vector buf{1};
     Vector bbf = -buf;
     for(unsigned int i = 0; i < 3; i++){
-            assert(bbf[i]==-1);
+            assert(bbf[i] == -1);
     }
     cout<<"18_Passed"<<endl;
 }
