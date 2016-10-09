@@ -81,7 +81,7 @@ Vector& Vector::operator/=(double k){
 
 bool operator==(const Vector& p1, const Vector& p2){
     for(unsigned int i = 0; i < p1.n; i++){
-            if(abs(p1.vec[i] - p2.vec[i])>numeric_limits<double>::epsilon()){
+            if(abs(p1.vec[i] - p2.vec[i]) > numeric_limits<double>::epsilon()){
                 return false;
             }
     }
