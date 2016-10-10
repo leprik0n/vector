@@ -194,8 +194,8 @@ oper_minus_unar();
     
 }
 
-catch(const char* op){
-    cout<<"exception:"<<op<<endl;
+catch(const invalid_argument&oop ){
+    cout<<"exception:"<<oop.what()<<endl;
 }
 
 catch(const std::out_of_range& oop){
