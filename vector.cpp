@@ -74,7 +74,7 @@ Vector& Vector::operator/=(double k){
             }
     }
     else{
-            throw "division by zero not impossible";
+            throw invalid_argument("divison by zero");
     }
     return *this;
 }
@@ -116,7 +116,7 @@ Vector operator/(const Vector& p, double k){
             return Vector(p) /= k;
     }
     else{
-        throw "division by zero not impossible";
+        throw invalid_argument("divison by zero");
     }
 }
 
