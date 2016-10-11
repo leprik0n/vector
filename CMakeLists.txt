@@ -14,7 +14,7 @@ include_directories(include)
 
 enable_testing()
 
-set(SOURCES src/vector.cpp)
+set(SOURCES vector.cpp)
 
 add_executable(test_vector tests/test_vector.cpp ${SOURCES})
 
