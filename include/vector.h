@@ -45,7 +45,7 @@ public:
   Vector operator-() const;
 
 private:
-  double vec[n];
+  std::array<double,n> vec;
 }; // class Vector
 
 bool operator!=(const Vector &, const Vector &);
