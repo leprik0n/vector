@@ -1,33 +1,26 @@
 #include <iostream>
 #include <stdexcept>
 #include <limits>
-#include "vector.h"
 #include <cmath>
+#include <algorithm>
+#include "vector.hpp"
 using namespace std;
 
 Vector::Vector(){
-    for(unsigned int i = 0; i < n; i++){
-            vec[i] = 0;
-    }
+    fill(vec.begin(),vec.end(),0);
 }
 
 Vector::Vector(double k){
-    for(unsigned int i = 0; i < n; i++){
-            vec[i] = k;
-    }
+    fill(vec.begin(),vec.end(),k);
 }
 
 Vector::Vector(const Vector& p){
-    for(unsigned int i = 0; i < n; i++){
-            vec[i] = p.vec[i];
-    }
+    copy(p.vec.begin(),p.vec.end(),vec.begin());
 }
 
 Vector& Vector::operator=(const Vector& p){
     if(this != &p){
-            for(unsigned int i = 0; i < n; i++){
-                    vec[i] = p.vec[i];
-            }
+            copy(p.vec.begin(),p.vec.end(),vec.begin());
     }
     return *this;
 }
@@ -47,31 +40,25 @@ double& Vector::operator[](unsigned long i){
 }
 
 Vector& Vector::operator+=(const Vector& p){
-    for(unsigned int i = 0; i < n; i++){
-            vec[i] += p.vec[i];
-    }
+    copy(p.vec.begin(),p.vec.end(),vec.begin());
     return *this;
 }
 
 Vector& Vector::operator-=(const Vector& p){
-    for(unsigned int i = 0; i < n; i++){
-            vec[i] -= p.vec[i];
+    for(size_t i = 0; i < n; ++i){
+        vec[i] -= p.vec[i];
     }
     return *this;
 }
 
 Vector& Vector::operator*=(double k){
-    for(unsigned int i = 0; i < n; i++){
-            vec[i] *= k;
-    }
+    for_each(vec.begin(),vec.end(),[k](double& i){return i *= k;});
     return *this;
 }
 
 Vector& Vector::operator/=(double k){
     if(k){
-            for(unsigned int i = 0; i < n; i++){
-                    vec[i] /= k;
-            }
+            for_each(vec.begin(),vec.end(),[k](double& i){return i /= k;});
     }
     else{
             throw invalid_argument("divison by zero");
@@ -80,7 +67,7 @@ Vector& Vector::operator/=(double k){
 }
 
 bool operator==(const Vector& p1, const Vector& p2){
-    for(unsigned int i = 0; i < p1.n; i++){
+    for(size_t i = 0; i < Vector::n; ++i){
             if(abs(p1.vec[i] - p2.vec[i]) > numeric_limits<double>::epsilon()){
                 return false;
             }
@@ -89,8 +76,8 @@ bool operator==(const Vector& p1, const Vector& p2){
 }
 
 ostream& operator<<(ostream& os,const Vector& p){
-    for(unsigned int i = 0; i < p.n; i++){
-            os<<p.vec[i]<<' ';
+    for(size_t i = 0; i < Vector::n; ++i){
+        os<<p.vec[i]<<' ';
     }
     return os;
 }
@@ -122,7 +109,7 @@ Vector operator/(const Vector& p, double k){
 
 double operator^(const Vector& p1, const Vector& p2){
     double sum = 0;
-    for(unsigned int i = 0; i < p1.n; i++){
+    for(size_t i = 0; i < Vector::n; ++i){
             sum += p1.vec[i]*p2.vec[i];
     }
     return sum;
@@ -134,4 +121,4 @@ bool operator!=(const Vector& p1, const Vector& p2){
 
 Vector Vector::operator-()const{
     return Vector(*this) *= -1;
-}    
+}
